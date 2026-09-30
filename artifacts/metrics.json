@@ -1,0 +1,58 @@
+{
+  "best_model": "TF-IDF(word+char) + LinearSVC",
+  "data_report": {
+    "rows_raw": 2060,
+    "dropped_null": 21,
+    "dropped_empty_after_cleaning": 0,
+    "dropped_duplicates": 480,
+    "conflicting_label_texts": 17,
+    "dropped_rare_classes": [],
+    "rows_final": 1525,
+    "class_distribution": {
+      "التوصيل": 346,
+      "جودة المنتج": 283,
+      "الفوترة والدفع": 268,
+      "خدمة العملاء": 250,
+      "الاسترجاع والاستبدال": 211,
+      "الحساب والتطبيق": 167
+    }
+  },
+  "test_metrics": {
+    "accuracy": 0.9344262295081968,
+    "precision_macro": 0.9334416059561655,
+    "recall_macro": 0.9265841517862875,
+    "f1_macro": 0.9291075209078578,
+    "precision_weighted": 0.9357082842111785,
+    "recall_weighted": 0.9344262295081968,
+    "f1_weighted": 0.9342454368901127
+  },
+  "top_confusions": [
+    [
+      "الاسترجاع والاستبدال",
+      "الفوترة والدفع",
+      3
+    ],
+    [
+      "الحساب والتطبيق",
+      "الفوترة والدفع",
+      2
+    ],
+    [
+      "جودة المنتج",
+      "الحساب والتطبيق",
+      1
+    ],
+    [
+      "الفوترة والدفع",
+      "خدمة العملاء",
+      1
+    ],
+    [
+      "الحساب والتطبيق",
+      "جودة المنتج",
+      1
+    ]
+  ],
+  "n_train": 1220,
+  "n_test": 305
+}
