@@ -14,6 +14,19 @@ def test_data_cleaning_report(tmp_path):
     assert (out["clean"].str.len() > 0).all()
 
 
+def test_data_cleaning_accepts_category_column_and_extra_fields(tmp_path):
+    p = tmp_path / "categories.csv"
+    frame = generate(n=400, seed=2).rename(columns={"label": "category"})
+    frame["id"] = range(len(frame))
+    frame["sentiment"] = "سلبي"
+    frame.to_csv(p, index=False, encoding="utf-8-sig")
+
+    out, report = load_and_clean(str(p))
+
+    assert report["rows_final"] == len(out) > 0
+    assert set(out["label"]).issubset(set(frame["category"]))
+
+
 def test_train_and_predict_end_to_end(tmp_path):
     data = tmp_path / "d.csv"
     generate(n=800, seed=3).to_csv(data, index=False, encoding="utf-8-sig")

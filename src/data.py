@@ -11,6 +11,12 @@ def load_and_clean(path: str, text_col: str = "text", label_col: str = "label",
     df = pd.read_csv(path, encoding="utf-8-sig")
     report: Dict = {"rows_raw": len(df)}
 
+    if label_col not in df.columns and label_col == "label" and "category" in df.columns:
+        label_col = "category"
+    missing = [column for column in (text_col, label_col) if column not in df.columns]
+    if missing:
+        raise ValueError(f"Missing required column(s): {', '.join(missing)}")
+
     df = df.rename(columns={text_col: "text", label_col: "label"})[["text", "label"]]
     df["label"] = df["label"].astype("string").str.strip()
 
